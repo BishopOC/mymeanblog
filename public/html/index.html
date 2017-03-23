@@ -10,7 +10,10 @@
 </head>
 <body>
   <div ng-controller='PostController'>
-    working
+    <input type="text" ng-model='newPost.title'>
+    <input type="text" ng-model='newPost.body'>
+    <button ng-click='addPost(newPost)'>Post</button>
+    <hr>
   </div>
 </body>
 <script src='js/app.js'></script>

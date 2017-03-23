@@ -1,3 +1,4 @@
+//jshint -W119
 (function(){
   angular.module('mymeanblog')
          .factory('PostService', PostService);
@@ -50,4 +51,4 @@
       fetch: fetch
     };
   }
-})()
+})();
