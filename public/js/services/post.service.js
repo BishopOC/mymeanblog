@@ -1,54 +1,52 @@
 //jshint -W119
-(function(){
+(function() {
   angular.module('mymeanblog')
-         .factory('PostService', PostService);
+      .factory('PostService', PostService);
 
   PostService.$inject = ['$http'];
 
   function PostService($http){
-    var baseURL = '/posts';
-    var post = [];
-
-    function fetch(){
-      return post;
-    }
-
+    var base = '/posts';
     function getAll(){
-      return $http.get(baseURL)
+      return $http.get(base)
                   .then(function(response){
-                    post = response.data.post;
-                    console.log(post);
+                    console.log(response);
                   });
     }
-
-    function getOne(post){
-      return $http.get(`${baseURL}/${post._id}`, post)
-                  .then(getAll);
+    function getOne(id){
+      var url = `${base}/${id}`;
+      return $http.get(url)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
-
     function create(post){
-      return $http.post(baseURL, post)
-                  .then(getAll);
+      return $http.post(base, post)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
-
     function update(post){
-      return $http.put(`${baseURL}/${post._id}`, post)
-                  .then(getAll);
+      var url = `${base}/${post._id}`;
+      return $http.put(url, post)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
-
     function deletePost(post){
-      return $http.delete(`${baseURL}/${post._id}`)
-                  .then(getAll);
+      var url = `${base}/${post._id}`;
+      return $http.delete(url)
+                  .then(function(response){
+                    console.log(response);
+                  });
     }
-
 
     return {
       getAll: getAll,
       getOne: getOne,
       create: create,
-      delete: deletePost,
       update: update,
-      fetch: fetch
+      delete: deletePost
     };
   }
-})();
+}());
